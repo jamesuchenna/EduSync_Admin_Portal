@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 
-namespace EduSync_Admin_Portal.DataModel
+namespace EduSync_Admin_Portal.Model
 {
     public class Student
     {

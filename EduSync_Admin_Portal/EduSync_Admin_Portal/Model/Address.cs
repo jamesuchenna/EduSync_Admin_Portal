@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EduSync_Admin_Portal.DataModel
+namespace EduSync_Admin_Portal.Model
 {
     public class Address
     {
