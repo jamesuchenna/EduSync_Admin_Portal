@@ -2,18 +2,11 @@ using EduSync_Admin_Portal.Data;
 using EduSync_Admin_Portal.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduSync_Admin_Portal
 {
@@ -31,11 +24,25 @@ namespace EduSync_Admin_Portal
         {
 
             services.AddControllers();
+
             services.AddDbContext<EduSyncDbContext>(options => options.UseSqlServer(Configuration
                 .GetConnectionString("EduSyncAdminPortalDb")));
             services.AddScoped<IStudentsRepository, StudentsRepository>();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
+
+            services.AddCors();
+            /*services.AddCors((options) =>
+            {
+                options.AddPolicy("eduSyncUI", (builder) =>
+                {
+                    builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .WithMethods("GET", "POST", "DELETE", "PUT")
+                    .WithExposedHeaders("*");
+                });
+            });*/
+
 
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +63,9 @@ namespace EduSync_Admin_Portal
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //app.UseCors("eduSyncUI");
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseAuthorization();
 

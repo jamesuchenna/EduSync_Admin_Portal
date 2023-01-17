@@ -3,6 +3,7 @@ using EduSync_Admin_Portal.Data.Repositories;
 using EduSync_Admin_Portal.DomainModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -26,6 +27,18 @@ namespace EduSync_Admin_Portal.Controllers
         {
             var student = await _studentRepository.GetStudentsAsync();
             return Ok(_mapper.Map<List<Student>>(student));
+        }
+
+        [HttpPost("{studentId:guid}"), ActionName("GetStudentAsync")]
+        public async Task<IActionResult> GetStudentAsync([FromRoute] Guid studentId)
+        {
+            var student = await _studentRepository.GetStudentAsync(studentId);
+
+            if(student== null)
+            {
+                return NotFound();
+            }
+            return Ok(_mapper.Map<Student>(student));
         }
     }
 }
