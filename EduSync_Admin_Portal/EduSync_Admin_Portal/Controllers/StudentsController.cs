@@ -22,9 +22,9 @@ namespace EduSync_Admin_Portal.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllStudents()
+        public async Task<IActionResult> GetAllStudentsAsync()
         {
-            var student = await _studentRepository.GetStudents();
+            var student = await _studentRepository.GetStudentsAsync();
             return Ok(_mapper.Map<List<Student>>(student));
         }
     }

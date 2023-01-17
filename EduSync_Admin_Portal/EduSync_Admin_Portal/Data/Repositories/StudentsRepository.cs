@@ -15,7 +15,7 @@ namespace EduSync_Admin_Portal.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Student>> GetStudents()
+        public async Task<List<Student>> GetStudentsAsync()
         {
             return await _context.Student.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
         }
