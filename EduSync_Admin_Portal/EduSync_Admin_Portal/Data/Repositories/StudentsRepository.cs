@@ -1,6 +1,8 @@
 ﻿using EduSync_Admin_Portal.DataModel;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EduSync_Admin_Portal.Data.Repositories
 {
@@ -13,9 +15,9 @@ namespace EduSync_Admin_Portal.Data.Repositories
             _context = context;
         }
 
-        public List<Student> GetStudents()
+        public async Task<List<Student>> GetStudents()
         {
-            return _context.Student.ToList();
+            return await _context.Student.ToListAsync();
         }
     }
 }

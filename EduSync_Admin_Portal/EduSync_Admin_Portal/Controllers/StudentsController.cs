@@ -4,6 +4,7 @@ using EduSync_Admin_Portal.DomainModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EduSync_Admin_Portal.Controllers
 {
@@ -21,9 +22,9 @@ namespace EduSync_Admin_Portal.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
-            var student = _studentRepository.GetStudents();
+            var student = await _studentRepository.GetStudents();
             return Ok(_mapper.Map<List<Student>>(student));
         }
     }
