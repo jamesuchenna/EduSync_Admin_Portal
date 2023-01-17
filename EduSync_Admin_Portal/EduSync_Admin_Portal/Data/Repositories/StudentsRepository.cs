@@ -17,7 +17,7 @@ namespace EduSync_Admin_Portal.Data.Repositories
 
         public async Task<List<Student>> GetStudents()
         {
-            return await _context.Student.ToListAsync();
+            return await _context.Student.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
         }
     }
 }
