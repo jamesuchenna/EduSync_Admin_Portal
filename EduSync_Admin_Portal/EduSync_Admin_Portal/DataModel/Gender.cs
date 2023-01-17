@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EduSync_Admin_Portal.Model
+namespace EduSync_Admin_Portal.DataModel
 {
     public class Gender
     {

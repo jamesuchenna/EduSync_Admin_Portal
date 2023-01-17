@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Net.Sockets;
 
-namespace EduSync_Admin_Portal.Model
+namespace EduSync_Admin_Portal.DomainModel
 {
     public class Student
     {
@@ -13,8 +12,6 @@ namespace EduSync_Admin_Portal.Model
         public long Mobile { get; set; }
         public string ProfileImageUrl { get; set; }
         public Guid GenderId { get; set; }
-
-        //Navigational properties
         public Gender Gender { get; set; }
         public Address Address { get; set; }
     }

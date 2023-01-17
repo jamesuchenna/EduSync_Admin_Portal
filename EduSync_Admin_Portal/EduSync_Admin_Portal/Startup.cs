@@ -1,4 +1,5 @@
 using EduSync_Admin_Portal.Data;
+using EduSync_Admin_Portal.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,10 @@ namespace EduSync_Admin_Portal
             services.AddControllers();
             services.AddDbContext<EduSyncDbContext>(options => options.UseSqlServer(Configuration
                 .GetConnectionString("EduSyncAdminPortalDb")));
+            services.AddScoped<IStudentsRepository, StudentsRepository>();
+
+            services.AddAutoMapper(typeof(Startup).Assembly);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EduSync_Admin_Portal", Version = "v1" });

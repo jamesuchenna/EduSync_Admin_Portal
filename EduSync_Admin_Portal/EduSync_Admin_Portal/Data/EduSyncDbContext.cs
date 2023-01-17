@@ -1,4 +1,4 @@
-﻿using EduSync_Admin_Portal.Model;
+﻿using EduSync_Admin_Portal.DataModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace EduSync_Admin_Portal.Data
