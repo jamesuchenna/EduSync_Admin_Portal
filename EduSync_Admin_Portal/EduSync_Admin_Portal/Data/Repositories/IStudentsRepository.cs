@@ -9,5 +9,8 @@ namespace EduSync_Admin_Portal.Data.Repositories
     {
         Task<List<Student>> GetStudentsAsync();
         Task<Student> GetStudentAsync(Guid studentId);
+        Task<List<Gender>> GetGendersAsync();
+        Task<bool> Exists(Guid studentId);
+        Task<Student> UpdateStudent(Guid studentId, Student request);
     }
 }
