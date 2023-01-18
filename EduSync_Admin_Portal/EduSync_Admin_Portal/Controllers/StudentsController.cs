@@ -43,7 +43,7 @@ namespace EduSync_Admin_Portal.Controllers
             return Ok(_mapper.Map<Student>(student));
         }
 
-        [HttpPost("{studentId:guid}")]
+        [HttpPut("{studentId:guid}")]
         public async Task<IActionResult> UpdateStudentAsync([FromRoute] Guid studentId, [FromBody] UpdateStudentRequest request)
         {
             if(await _studentRepository.Exists(studentId))
