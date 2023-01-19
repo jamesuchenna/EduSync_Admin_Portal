@@ -17,6 +17,8 @@ namespace EduSync_Admin_Portal.Profiles
             CreateMap<Gender, DomainModel.Gender>().ReverseMap();
             CreateMap<UpdateStudentRequest, Student>()
                 .AfterMap<UpdateStudentRequestAfterMap>();
+            CreateMap<AddStudentRequest, Student>()
+                .AfterMap<AddStudentAfterMap>();
         }
     }
 }

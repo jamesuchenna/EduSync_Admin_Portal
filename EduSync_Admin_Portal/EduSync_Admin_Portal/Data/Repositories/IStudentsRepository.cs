@@ -12,5 +12,8 @@ namespace EduSync_Admin_Portal.Data.Repositories
         Task<List<Gender>> GetGendersAsync();
         Task<bool> Exists(Guid studentId);
         Task<Student> UpdateStudent(Guid studentId, Student request);
+        Task<Student> DeleteStudent(Guid studentId);
+        Task<Student> AddStudent(Student student);
+        Task<bool> UpdateProfileImage(Guid studentId, string imagePath);
     }
 }

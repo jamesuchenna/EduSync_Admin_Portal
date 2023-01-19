@@ -5,8 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace EduSync_Admin_Portal
 {
@@ -28,6 +30,7 @@ namespace EduSync_Admin_Portal
             services.AddDbContext<EduSyncDbContext>(options => options.UseSqlServer(Configuration
                 .GetConnectionString("EduSyncAdminPortalDb")));
             services.AddScoped<IStudentsRepository, StudentsRepository>();
+            services.AddScoped<IUploadImageRepository, UploadImageRepository>();
 
             services.AddAutoMapper(typeof(Startup).Assembly);
 
@@ -61,6 +64,12 @@ namespace EduSync_Admin_Portal
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Resources")),
+                RequestPath = "/Resources"
+            });
 
             app.UseRouting();
 
